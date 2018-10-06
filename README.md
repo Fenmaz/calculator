@@ -2,6 +2,6 @@
 
 A toy calculator example implemented in React Native, created with create-react-native-app.
 
-## TODO:
+## Todo:
 - Implement calculator logic
 - Implement scientific calculator
