@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import RoundButton from './RoundButton';
-import RectButton from './RectButton';
+import { CircleButton, RectButton } from './Button';
 
 
 export default class Calculator extends Component {
@@ -28,19 +27,18 @@ class DigitPad extends Component {
 
     var {height, width} = Dimensions.get('window');
     const digits = [[7, 8, 9], [4, 5, 6], [1, 2, 3]];
-    const {color, fontSize} = StyleSheet.flatten(styles.button);
 
     return(
 
       <View style={{flex: 4}}>
         {digits.map(row =>
           <View style={{flex: 1, flexDirection: 'row'}}>
-            {row.map(digit => <RoundButton color={color} text={digit} width={width/4} fontSize={fontSize}/>)}
+            {row.map(digit => <CircleButton text={digit} width={width/4}/>)}
           </View>
         )}
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <RectButton color={color} text='0' width={width/2} fontSize={fontSize}/>
-          <RoundButton color={color} text={'.'} width={width/4} fontSize={fontSize}/>)}
+          <RectButton text='0' width={width/2}/>
+          <CircleButton text={'.'} width={width/4}/>)}
         </View>
       </View>
     )
@@ -53,18 +51,17 @@ class NumPad extends Component {
     var {height, width} = Dimensions.get('window');
     const symbols = ["+", "-", "x", "/", "="];
     const singleOperator = ["C", "+/-", "%"];
-    const {color, fontSize} = StyleSheet.flatten(styles.button);
 
     return (
       <View style={styles.numpad}>
         <View style={{flex: 3}}>
           <View style={{flex: 1, flexDirection: 'row'}}>
-            {singleOperator.map(oper => <RoundButton color={color} text={oper} width={width/4} fontSize={fontSize}/>)}
+            {singleOperator.map(oper => <CircleButton text={oper} width={width/4}/>)}
           </View>
           <DigitPad />
         </View>
         <View style={{flex: 1}}>
-          {symbols.map(symbol => <RoundButton color={color} text={symbol} width={width/4} fontSize={fontSize}/>)}
+          {symbols.map(symbol => <CircleButton text={symbol} width={width/4}/>)}
         </View>
       </View>
     )
@@ -90,8 +87,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#DAFBDE'
   },
-  button: {
-    color: '#84E790',
-    fontSize: 30,
-  }
 });
